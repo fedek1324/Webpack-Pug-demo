@@ -1,0 +1,27 @@
+body {
+  margin: 0 auto;
+  color: rebeccapurple;
+}
+
+.container {
+  padding-top: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: "Bermuda LP", Courier, monospace;
+  text-align: center;
+}
+
+.red {
+  color: lightcoral;
+}
+
+.green {
+  color: lawngreen;
+}
+
+.blue {
+  color: blue;
+}

@@ -1,0 +1,38 @@
+//- весь контент почти в файле base.pug
+extends base.pug
+block contentPart2
+    - var numbers = [0,1,2,3]
+    p Content
+    hr
+
+    - var title = "Man speaks"
+    - var name = "<b>Fedor</b>"
+    h3= title 
+    p Im #{name}
+    p !{name} is a good name
+    hr
+
+    mixin introduce(name)
+        p Hi! My name is #{name}
+        if block
+            block
+
+    +introduce('Vetements')
+        p Its not name btw
+    +introduce('Alex')
+    +introduce('PT')
+
+    mixin link(href, content)
+        //- attibutes == {class: "green"}
+        a(class!=attributes.class href=href)= content
+
+    +link('https://google.com', 'google')(class="red")
+    hr
+
+    -
+        var dictionary = [
+            {word: "google", description: "website"},
+            {word: 1, description: "number"}
+        ]
+    each pair in dictionary
+        p !{pair.word} is !{pair.description}

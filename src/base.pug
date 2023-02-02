@@ -1,0 +1,139 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Pug proj
+        link(href=require('./styles/style.scss') rel='stylesheet')
+    body
+        container
+            script(src=require('./index.js'))
+            h1 Pug course
+            ui
+                li Item <em>1</em>
+                li Item 2
+                li Iterm 3
+            hr
+
+            p
+                |The pipe always goes at the beginning of its own line,
+                |not counting indentation. Я так понимаю это вместо того чтобы писать сверху у тега рядом
+            hr
+
+            a(href='google.com') Google
+            a(class='button' href='google.com') Google
+            |
+            |
+            //- ещё две палки дают пробел (+ перенос строки в html файле)
+            a(class='button', href='google.com') Google
+            hr
+
+            - var isok = false 
+            p(class= isok ? 'green' : 'red') Are u oke
+
+            input(
+                type='checkbox'
+                name='agreement'
+                checked=isok
+            )
+
+            hr
+            - var url = 'pug-test.html';
+            a(href='/' + url) Link
+            |
+            |
+            - url = 'https://example.com/'
+            a(href=url) Another link
+
+            hr
+            - var classes = ['foo', 'bar', 'baz']
+            a(class=classes) 3 classes
+            |
+            |
+            //- the class attribute may also be repeated to merge arrays
+            a.bang(class=classes class=['bing']) 5 classes
+            //- но можно писать и без значка массива
+            hr
+
+            - var money = 24
+            case money 
+                when 0
+                    p U r bankrot 
+                when 1
+                    p U have one dollar
+                default 
+                    p U have #{money}$
+            hr
+
+            ul
+                each val, index in ['zero', 'one', 'two']
+                    li= 'index : value\t' + index + ': ' + val
+
+            - var values = [];
+
+            ul
+                each val in values
+                    li= val
+                else
+                    li There are no values in arr
+            
+            - var n = 0;
+            ul
+                while n < 4
+                    li= n++
+            hr
+
+            p Небуферизированный код ничего не выводит и начинается с символа  -
+            - for (var x = 0; x < 3; x++) //- for не создал ul
+                li item
+
+            p Буфферизированный код начинается с символа = (и в кавычках)
+            p
+                = '<em>This</em> code is <escaped>!'
+
+            -
+                var list = ["One", "Two", "Three"]
+            ul
+                each item in list
+                    li= item
+            hr
+
+            include comments.pug
+
+            - var user = { description: ('foo bar baz')}
+            - var user2 = {}
+            - var authorized = true  
+            //- div#user
+            #user 
+                if user2.description
+                    h2.green Description
+                    p.description= user2.description
+                else if authorized 
+                    h2.blue Description 
+                    //- точка позволяет интерпретировать код ниже в блоке как текст иначе
+                    //- появлся бы тег User с текстом has no description. Или можно исп-ть |
+                    p.description.
+                        User has no description,
+                        why not add one...
+                else
+                    h2.red Description 
+                    p.descriptiion. 
+                        User not authorized
+            hr
+
+            block header
+                h3 Header block
+            block contentPart2
+           
+
+
+
+
+
+
+
+
+
+
+
